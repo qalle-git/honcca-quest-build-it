@@ -12,6 +12,7 @@
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/speechBubbleBottom.png</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/speechBubbleMiddle.png</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/speechBubbleTop.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/SpriteSheets/boxIdle.png</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/SpriteSheets/coinSpritesheet.png</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/SpriteSheets/IdleSpriteSheet.png</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/SpriteSheets/npcOneSpritesheet.png</File>
@@ -23,6 +24,7 @@
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Tiles/mainSet.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

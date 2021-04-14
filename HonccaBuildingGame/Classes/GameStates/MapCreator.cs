@@ -15,6 +15,8 @@ namespace HonccaBuildingGame.Classes.GameStates
         private int CurrentTileIndex;
         private int CollisionTypeIndex;
 
+        private bool InventoryViewOpen = false;
+
         private readonly SpriteFont DebugSpriteFont;
 
         private const string mapName = "LEVEL_ONE";
@@ -27,6 +29,9 @@ namespace HonccaBuildingGame.Classes.GameStates
         }
 
         #region InputControls
+
+        private int LastScrollValue;
+
         public override void Input(GameTime gameTime)
         {
             if (ButtonCooldownTimer.IsFinished(gameTime))
@@ -39,9 +44,18 @@ namespace HonccaBuildingGame.Classes.GameStates
                 {
                     ButtonCooldownTimer.ResetTimer(gameTime);
 
-                    Point mousePosition = GetMousePosition();
+                    if (InventoryViewOpen)
+                    {
+                        Point mousePosition = GetMousePosition(true);
 
-                    AddToMap(mousePosition.X, mousePosition.Y);
+                        CurrentTileIndex = (mousePosition.Y > 0 ? mousePosition.X + (mousePosition.Y * 17) : mousePosition.X);
+                    }
+                    else
+                    {
+                        Point mousePosition = GetMousePosition();
+
+                        AddToMap(mousePosition.X, mousePosition.Y);
+                    }
                 }
                 else if (mouseState.RightButton == ButtonState.Pressed)
                 {
@@ -49,6 +63,14 @@ namespace HonccaBuildingGame.Classes.GameStates
 
                     RemoveTopLayer();
                 }
+                else if (mouseState.ScrollWheelValue != LastScrollValue)
+                {
+                    bool shouldGoUp = mouseState.ScrollWheelValue > LastScrollValue;
+
+                    Globals.MainCamera.Move(new Vector2(0, Globals.MainCamera.Position.Y + (shouldGoUp ? 100 : -100)));
+                }
+
+                LastScrollValue = mouseState.ScrollWheelValue;
 
                 foreach (Keys key in keyboardState.GetPressedKeys())
                 {
@@ -56,30 +78,6 @@ namespace HonccaBuildingGame.Classes.GameStates
                     {
                         case Keys.Space:
                             SaveMap();
-
-                            ButtonCooldownTimer.ResetTimer(gameTime);
-
-                            break;
-                        case Keys.Up:
-                            CurrentTileIndex -= 17;
-
-                            ButtonCooldownTimer.ResetTimer(gameTime);
-
-                            break;
-                        case Keys.Left:
-                            CurrentTileIndex--;
-
-                            ButtonCooldownTimer.ResetTimer(gameTime);
-
-                            break;
-                        case Keys.Down:
-                            CurrentTileIndex += 17;
-
-                            ButtonCooldownTimer.ResetTimer(gameTime);
-
-                            break;
-                        case Keys.Right:
-                            CurrentTileIndex++;
 
                             ButtonCooldownTimer.ResetTimer(gameTime);
 
@@ -112,8 +110,12 @@ namespace HonccaBuildingGame.Classes.GameStates
                             FillMap();
 
                             break;
-                        case Keys.C:
-                            Globals.MainCamera.Move(new Vector2(0, Globals.MainCamera.Position.Y + 10));
+                        case Keys.Tab:
+                            InventoryViewOpen = !InventoryViewOpen;
+
+                            Globals.TheStateMachine.ToggleVisibilityOnAllStatesExcept(this);
+
+                            ButtonCooldownTimer.ResetTimer(gameTime);
 
                             break;
                         default:
@@ -158,11 +160,11 @@ namespace HonccaBuildingGame.Classes.GameStates
                     {
                         if (tiles[currentTileIndex].TileIndex > 0)
                         {
-                            saveList.Add((int)tiles[currentTileIndex].TileX);
-                            saveList.Add((int)tiles[currentTileIndex].TileY);
-                            saveList.Add((int)tiles[currentTileIndex].TileIndex);
+                            saveList.Add(tiles[currentTileIndex].TileX);
+                            saveList.Add(tiles[currentTileIndex].TileY);
+                            saveList.Add(tiles[currentTileIndex].TileIndex);
                             saveList.Add((int)tiles[currentTileIndex].TileType);
-                            saveList.Add((int)tiles[currentTileIndex].TileLayer);
+                            saveList.Add(tiles[currentTileIndex].TileLayer);
                         }
                     }
                 }
@@ -245,20 +247,30 @@ namespace HonccaBuildingGame.Classes.GameStates
 
             spriteBatch.Begin(transformMatrix: Globals.MainCamera.GetTranslationMatrix());
 
-            int numTilesX = Globals.MainGraphicsHandler.GetSprite("MainTileSet").Width / Globals.TileSize.X;
-
             Point mousePosition = GetMousePosition();
 
-            Rectangle tileRectangle = new Rectangle(CurrentTileIndex % numTilesX * Globals.TileSize.X, CurrentTileIndex / numTilesX * Globals.TileSize.Y, Globals.TileSize.X, Globals.TileSize.Y);
+            Texture2D tileSetTexture = Globals.MainGraphicsHandler.GetSprite("MainTileSet");
 
-            if (CurrentTileIndex > 0)
-                spriteBatch.Draw(Globals.MainGraphicsHandler.GetSprite("MainTileSet"), new Rectangle(mousePosition.X * Globals.TileSize.X, mousePosition.Y * Globals.TileSize.X, Globals.TileSize.X, Globals.TileSize.Y), tileRectangle, Color.White);
+            if (!InventoryViewOpen)
+            {
+                int numTilesX = tileSetTexture.Width / Globals.TileSize.X;
+
+                Rectangle tileRectangle = new Rectangle(CurrentTileIndex % numTilesX * Globals.TileSize.X, CurrentTileIndex / numTilesX * Globals.TileSize.Y, Globals.TileSize.X, Globals.TileSize.Y);
+
+                if (CurrentTileIndex > 0)
+                    spriteBatch.Draw(tileSetTexture, new Rectangle(mousePosition.X * Globals.TileSize.X, mousePosition.Y * Globals.TileSize.X, Globals.TileSize.X, Globals.TileSize.Y), tileRectangle, Color.White);
+            }
 
             spriteBatch.Draw(Globals.MainGraphicsHandler.GetSprite("OutlineRectangle"), new Rectangle(mousePosition.X * Globals.TileSize.X, mousePosition.Y * Globals.TileSize.X, Globals.TileSize.X, Globals.TileSize.Y), Color.White);
 
             spriteBatch.End();
 
             spriteBatch.Begin();
+
+            if (InventoryViewOpen)
+            {
+                spriteBatch.Draw(tileSetTexture, new Rectangle(0, 0, tileSetTexture.Width, tileSetTexture.Height), Color.White);
+            }
 
             spriteBatch.DrawString(DebugSpriteFont, $"X: {mousePosition.X}\nY: {mousePosition.Y}", new Vector2(0, 150), Color.White);
 			spriteBatch.DrawString(DebugSpriteFont, $"Tile: {CurrentTileIndex}", new Vector2(0, 60), Color.White);
@@ -268,9 +280,14 @@ namespace HonccaBuildingGame.Classes.GameStates
             spriteBatch.End();
 		}
 
-        private Point GetMousePosition()
+        private Point GetMousePosition(bool noCamera = false)
         {
             MouseState mouseState = Mouse.GetState();
+
+            if (noCamera)
+            {
+                return new Point(mouseState.Position.X / Globals.TileSize.X, mouseState.Position.Y / Globals.TileSize.Y);
+            }
 
             int mouseX = (mouseState.Position.X + (int)Globals.MainCamera.Position.X) / Globals.TileSize.X;
             int mouseY = (mouseState.Position.Y + (int)Globals.MainCamera.Position.Y) / Globals.TileSize.Y;

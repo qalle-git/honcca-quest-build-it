@@ -12,11 +12,11 @@ namespace HonccaBuildingGame.Classes.Inventories
 		{
 			Items = new Item[4];
 
-			AddItem(new Item()
-			{
-				Name = "DIRT_BLOCK",
-				Count = 2
-			});
+			//AddItem(new Item()
+			//{
+			//	Name = "DIRT_BLOCK",
+			//	Count = 2
+			//});
 			//AddItem(new Item()
 			//{
 			//	Name = "GRASS_BLOCK",

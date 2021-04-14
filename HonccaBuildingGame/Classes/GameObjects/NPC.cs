@@ -16,6 +16,7 @@ namespace HonccaBuildingGame.Classes.GameObjects
         {
             NPCDialogue = new Dialogue(dialogue);
 
+            PhysicsEnabled = true;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

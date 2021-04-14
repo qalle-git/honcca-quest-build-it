@@ -74,7 +74,7 @@ namespace HonccaBuildingGame.Classes.GameStates
 				int maxInterval = Globals.ScreenSize.X * (currentCheckIndex + 1);
 				int minInterval = Globals.ScreenSize.X * currentCheckIndex;
 
-				if (Globals.MainPlayer.Position.X > minInterval && Globals.MainPlayer.Position.X < maxInterval)
+				if (Globals.MainPlayer.Position.X > minInterval && Globals.MainPlayer.Position.X < maxInterval && Globals.MainCamera.Position.X != minInterval)
 				{
 					Globals.MainCamera.Move(new Vector2(minInterval, Globals.MainCamera.Position.Y));
 				}

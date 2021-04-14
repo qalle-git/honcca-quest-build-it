@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/coinItem.png</SourceFile>
-  <SourceTime>2021-03-30T20:21:23.4829531+02:00</SourceTime>
-  <DestFile>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/bin/DesktopGL/Sprites/coinItem.xnb</DestFile>
-  <DestTime>2021-04-14T20:05:37.4826692+02:00</DestTime>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/SpriteSheets/boxIdle.png</SourceFile>
+  <SourceTime>2021-04-14T20:08:46.4544136+02:00</SourceTime>
+  <DestFile>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/bin/DesktopGL/Content/SpriteSheets/boxIdle.xnb</DestFile>
+  <DestTime>2021-04-14T20:08:53.7380405+02:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2018-12-08T17:35:54+01:00</ImporterTime>
+  <ImporterTime>2020-08-10T16:17:54+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2018-12-08T17:35:54+01:00</ProcessorTime>
+  <ProcessorTime>2020-08-10T16:17:54+02:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

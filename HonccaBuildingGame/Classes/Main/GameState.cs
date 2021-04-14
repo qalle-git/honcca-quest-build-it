@@ -8,6 +8,8 @@ namespace HonccaBuildingGame.Classes.Main
 {
 	abstract class GameState : IGameState
 	{
+		public bool Visible = true;
+
 		public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
 		{
 		}

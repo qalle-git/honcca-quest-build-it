@@ -143,6 +143,9 @@ namespace HonccaBuildingGame.Classes.GameStates
 
 		public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
 		{
+			if (!Visible)
+				return;
+
 			spriteBatch.Begin();
 
 			Inventory playerInventory = Globals.MainPlayer.ItemInventory;

@@ -71,6 +71,9 @@ namespace HonccaBuildingGame.Classes.GameObjects
 
 		private void Idle(GameTime gameTime)
 		{
+			if (CurrentFrame.X > 3)
+				CurrentFrame.X = 0;
+
 			CurrentFrame.Y = 0;
 			FrameRange.Y = 3;
 			AnimationCooldown = TimeSpan.FromMilliseconds(200);
@@ -82,7 +85,7 @@ namespace HonccaBuildingGame.Classes.GameObjects
 		{
 			KeyboardState keyboardState = Keyboard.GetState();
 
-			if (keyboardState.IsKeyDown(Keys.Left))
+			if (keyboardState.IsKeyDown(Keys.A))
 			{
 				Momentum.X = -15000 * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -92,7 +95,7 @@ namespace HonccaBuildingGame.Classes.GameObjects
 
 				IdleTimer.ResetTimer(gameTime);
 			}
-			else if (keyboardState.IsKeyDown(Keys.Right))
+			else if (keyboardState.IsKeyDown(Keys.D))
 			{
 				Momentum.X = 15000 * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -102,7 +105,7 @@ namespace HonccaBuildingGame.Classes.GameObjects
 
 				IdleTimer.ResetTimer(gameTime);
 			}
-			else if (keyboardState.IsKeyDown(Keys.Down) && Momentum.X == 0)
+			else if (keyboardState.IsKeyDown(Keys.S) && Momentum.X == 0)
 			{
 				Idle(gameTime);
 			}
@@ -111,7 +114,7 @@ namespace HonccaBuildingGame.Classes.GameObjects
 				Momentum.X = 0;
 			}
 
-			if (keyboardState.IsKeyDown(Keys.Up))
+			if (keyboardState.IsKeyDown(Keys.W))
 			{
 				if (!JumpDisabled)
 				{
@@ -127,20 +130,22 @@ namespace HonccaBuildingGame.Classes.GameObjects
 			{
 				Momentum.X = 0;
 
-				CurrentFrame.Y = 0;
-				FrameRange.Y = 3;
-				AnimationCooldown = TimeSpan.FromMilliseconds(200);
+				Idle(gameTime);
 			}
 			else
 			{
-				FrameRange.Y = 4;
-				AnimationCooldown = TimeSpan.FromMilliseconds(100);
+				if (CurrentFrame.Y > 0)
+				{
+					FrameRange.Y = 5;
+					
+					AnimationCooldown = TimeSpan.FromMilliseconds(100);
+				}
 			}
 		}
 
 		public void PlaceTile(int tileIndex = 1)
 		{
-			int add = InputHandler.IsBeingPressed(Keys.Down) ? 0 : CurrentDirection == Direction.LEFT ? -Globals.TileSize.X : Globals.TileSize.X;
+			int add = InputHandler.IsBeingPressed(Keys.S) ? 0 : CurrentDirection == Direction.LEFT ? -Globals.TileSize.X : Globals.TileSize.X;
 
 			Vector2 placePosition = new Vector2(Position.X + add, Position.Y + Globals.TileSize.Y * 2);
 
@@ -158,7 +163,7 @@ namespace HonccaBuildingGame.Classes.GameObjects
 
 		public override void Physics(GameTime gameTime)
 		{
-			Momentum.Y += 1500 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+			Momentum.Y += 1750 * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 			Vector2 frameMovement = Momentum * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -205,7 +210,7 @@ namespace HonccaBuildingGame.Classes.GameObjects
 		{
 			base.Draw(gameTime, spriteBatch);
 
-			int add = InputHandler.IsBeingPressed(Keys.Down) ? 0 : CurrentDirection == Direction.LEFT ? -Globals.TileSize.X : Globals.TileSize.X;
+			int add = InputHandler.IsBeingPressed(Keys.S) ? 0 : CurrentDirection == Direction.LEFT ? -Globals.TileSize.X : Globals.TileSize.X;
 
 			spriteBatch.Draw(Globals.MainGraphicsHandler.GetSprite("OutlineRectangle"), new Rectangle((int)Position.X + add, (int)Position.Y + Globals.TileSize.Y * 2, Globals.TileSize.X, Globals.TileSize.Y), Color.White);
 		}

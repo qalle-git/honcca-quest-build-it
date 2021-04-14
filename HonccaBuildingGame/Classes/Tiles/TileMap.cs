@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using HonccaBuildingGame.Classes.Extra;
 using HonccaBuildingGame.Classes.Pickups;
+using HonccaBuildingGame.Classes.GameObjects;
 
 namespace HonccaBuildingGame.Classes.Tiles
 {
@@ -210,6 +211,18 @@ namespace HonccaBuildingGame.Classes.Tiles
 						{
                             Globals.AllGameObjects.Add(new Coin(new Vector2(currentX * Globals.TileSize.X, currentY * Globals.TileSize.Y)));
 						}
+                        else if (currentTile.TileIndex == 39)
+                        {
+                            Globals.AllGameObjects.Add(new Block(new Vector2(currentX * Globals.TileSize.X, currentY * Globals.TileSize.Y), "DIRT_BLOCK"));
+                        }
+                        else if (currentTile.TileIndex == 56)
+                        {
+                            Furniture staticBox = new Furniture(new Vector2(currentX * Globals.TileSize.X, currentY * Globals.TileSize.Y), Globals.MainGraphicsHandler.GetSprite("StaticBox"));
+
+                            staticBox.SetAnimationData(new Point(2, 0), new Point(0, 2), Animation.Direction.LEFT, 450);
+
+                            Globals.AllGameObjects.Add(staticBox);
+                        }
 					}
                 }
             }
@@ -217,6 +230,9 @@ namespace HonccaBuildingGame.Classes.Tiles
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            if (!Visible) 
+                return;
+
             spriteBatch.Begin(transformMatrix: Globals.MainCamera.GetTranslationMatrix());
 
             int numTilesX = Globals.MainGraphicsHandler.GetSprite("MainTileSet").Width / Globals.TileSize.X;

@@ -11,14 +11,14 @@ namespace HonccaBuildingGame.Classes.Main
 {
 	class StateHandler
 	{
-        private readonly List<IGameState> States = new List<IGameState>();
+        private readonly List<GameState> States = new List<GameState>();
 
         public StateHandler()
         {
             AddState(new SplashScreen());
         }
 
-        public void AddState(IGameState newState)
+        public void AddState(GameState newState)
         {
             States.Add(newState);
         }
@@ -65,6 +65,24 @@ namespace HonccaBuildingGame.Classes.Main
             for (int currentStateIndex = States.Count - 1; currentStateIndex >= 0; currentStateIndex--)
             {
                 States.RemoveAt(currentStateIndex);
+            }
+        }
+
+        /// <summary>
+        /// This function will toggle the visiblity on all gamestates except the one specified.
+        /// Currently being used inside the map creator hide all current gamestates to only show the map creator.
+        /// </summary>
+        /// <param name="stateToSkip">Skip this state. (GameState)</param>
+        public void ToggleVisibilityOnAllStatesExcept(GameState stateToSkip)
+        {
+            for (int currentStateIndex = 0; currentStateIndex < States.Count; currentStateIndex++)
+            {
+                GameState currentState = States[currentStateIndex];
+
+                if (currentState != stateToSkip)
+                {
+                    currentState.Visible = !currentState.Visible;
+                }
             }
         }
     }

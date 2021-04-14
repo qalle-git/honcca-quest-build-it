@@ -89,6 +89,22 @@ namespace HonccaBuildingGame.Classes.Main
                 {
                     FileName = "Sprites/speechBubbleBottom"
                 }
+            },
+            {
+                "StaticBox",
+
+                new Sprite()
+                {
+                    FileName = "SpriteSheets/boxIdle"
+                }
+            },
+            {
+                "Door",
+
+                new Sprite()
+                {
+                    FileName = "SpriteSheets/doorAnimation"
+                }
             }
         };
 

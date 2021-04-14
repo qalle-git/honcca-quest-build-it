@@ -62,7 +62,10 @@ namespace HonccaBuildingGame.Classes.GameObjects
 
             Vector2 frameMovement = Momentum * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            Globals.TheTileMap.CanFall(GetRectangle(), ref frameMovement);
+            if (!Globals.TheTileMap.CanFall(GetRectangle(), ref frameMovement))
+            {
+                Momentum.Y = 0;
+            }
 
             Position += frameMovement;
         }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/SpriteSheets/coinSpritesheet.png</SourceFile>
+  <SourceFile>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/SpriteSheets/coinSpritesheet.png</SourceFile>
   <SourceTime>2021-03-26T13:49:54.7320872+01:00</SourceTime>
-  <DestFile>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/bin/DesktopGL/SpriteSheets/coinSpritesheet.xnb</DestFile>
-  <DestTime>2021-03-30T20:21:30.4925848+02:00</DestTime>
+  <DestFile>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/bin/DesktopGL/SpriteSheets/coinSpritesheet.xnb</DestFile>
+  <DestTime>2021-04-14T20:05:37.5519946+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T17:35:54+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

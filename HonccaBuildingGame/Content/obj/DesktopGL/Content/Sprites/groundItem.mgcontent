@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/groundItem.png</SourceFile>
-  <SourceTime>2021-04-01T11:00:16.8034614+02:00</SourceTime>
+  <SourceTime>2021-04-14T16:15:38.4824153+02:00</SourceTime>
   <DestFile>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/bin/DesktopGL/Content/Sprites/groundItem.xnb</DestFile>
-  <DestTime>2021-04-14T15:26:29.0521826+02:00</DestTime>
+  <DestTime>2021-04-14T16:15:42.1466937+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
