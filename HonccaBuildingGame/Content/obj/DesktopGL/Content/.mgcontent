@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Fonts/dialogueFont.spritefont</File>
+    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Fonts/mapCreatorFont.spritefont</File>
+    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Sprites/coinItem.png</File>
+    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Sprites/groundItem.png</File>
+    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Sprites/outlineRectangle.png</File>
+    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Sprites/speechBubbleBottom.png</File>
+    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Sprites/speechBubbleMiddle.png</File>
+    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Sprites/speechBubbleTop.png</File>
+    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/SpriteSheets/coinSpritesheet.png</File>
+    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/SpriteSheets/IdleSpriteSheet.png</File>
+    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/SpriteSheets/npcOneSpritesheet.png</File>
+    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Tiles/Dark_lvl0.png</File>
+    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Tiles/Dark_lvl1.png</File>
+    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Tiles/Dark_lvl2.png</File>
+    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Tiles/Dark_lvl3.png</File>
+    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Tiles/Dark_lvl4.png</File>
+    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Tiles/mainSet.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File>SpriteSheets/idleSpriteSheet.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
