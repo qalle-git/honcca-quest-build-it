@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Sprites/speechBubbleBottom.png</SourceFile>
+  <SourceFile>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/speechBubbleBottom.png</SourceFile>
   <SourceTime>2021-04-13T14:02:23.4453575+02:00</SourceTime>
-  <DestFile>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/bin/DesktopGL/Content/Sprites/speechBubbleBottom.xnb</DestFile>
-  <DestTime>2021-04-13T14:05:40.1677812+02:00</DestTime>
+  <DestFile>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/bin/DesktopGL/Content/Sprites/speechBubbleBottom.xnb</DestFile>
+  <DestTime>2021-04-14T15:26:29.0731261+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

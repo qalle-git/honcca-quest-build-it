@@ -4,23 +4,23 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Fonts/dialogueFont.spritefont</File>
-    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Fonts/mapCreatorFont.spritefont</File>
-    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Sprites/coinItem.png</File>
-    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Sprites/groundItem.png</File>
-    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Sprites/outlineRectangle.png</File>
-    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Sprites/speechBubbleBottom.png</File>
-    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Sprites/speechBubbleMiddle.png</File>
-    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Sprites/speechBubbleTop.png</File>
-    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/SpriteSheets/coinSpritesheet.png</File>
-    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/SpriteSheets/IdleSpriteSheet.png</File>
-    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/SpriteSheets/npcOneSpritesheet.png</File>
-    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Tiles/Dark_lvl0.png</File>
-    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Tiles/Dark_lvl1.png</File>
-    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Tiles/Dark_lvl2.png</File>
-    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Tiles/Dark_lvl3.png</File>
-    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Tiles/Dark_lvl4.png</File>
-    <File>C:/Users/Dator/source/repos/HonccaBuildingGame/HonccaBuildingGame/Content/Tiles/mainSet.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Fonts/dialogueFont.spritefont</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Fonts/mapCreatorFont.spritefont</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/coinItem.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/groundItem.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/outlineRectangle.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/speechBubbleBottom.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/speechBubbleMiddle.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/speechBubbleTop.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/SpriteSheets/coinSpritesheet.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/SpriteSheets/IdleSpriteSheet.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/SpriteSheets/npcOneSpritesheet.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Tiles/Dark_lvl0.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Tiles/Dark_lvl1.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Tiles/Dark_lvl2.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Tiles/Dark_lvl3.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Tiles/Dark_lvl4.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Tiles/mainSet.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

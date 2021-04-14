@@ -180,11 +180,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dator\\source\\repos\\HonccaBuildingGame\\HonccaBuildingGame\\HonccaBuildingGame.csproj",
+      "projectUniqueName": "F:\\Github\\honcca-quest-build-it\\HonccaBuildingGame\\HonccaBuildingGame.csproj",
       "projectName": "HonccaBuildingGame",
-      "projectPath": "C:\\Users\\Dator\\source\\repos\\HonccaBuildingGame\\HonccaBuildingGame\\HonccaBuildingGame.csproj",
+      "projectPath": "F:\\Github\\honcca-quest-build-it\\HonccaBuildingGame\\HonccaBuildingGame.csproj",
       "packagesPath": "C:\\Users\\Dator\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dator\\source\\repos\\HonccaBuildingGame\\HonccaBuildingGame\\obj\\",
+      "outputPath": "F:\\Github\\honcca-quest-build-it\\HonccaBuildingGame\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
