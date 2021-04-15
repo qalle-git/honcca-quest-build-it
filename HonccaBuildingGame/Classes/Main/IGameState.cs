@@ -12,6 +12,6 @@ namespace HonccaBuildingGame.Classes.Main
 		public void Update(GameTime gameTime);
 		public void Draw(GameTime gameTime, SpriteBatch spriteBatch);
 
-		public bool ShouldDispose();
+		public bool ShouldDispose(GameTime gameTime);
 	}
 }

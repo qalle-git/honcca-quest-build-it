@@ -63,8 +63,10 @@ namespace HonccaBuildingGame.Classes.GameObjects
 				{
 					Idle(gameTime);
 				}
-
 			}
+
+			if (Position.X < 0)
+				Position.X = 0;
 
 			base.Update(gameTime);
 		}
@@ -121,6 +123,8 @@ namespace HonccaBuildingGame.Classes.GameObjects
 					JumpDisabled = true;
 
 					Momentum.Y = -700;
+
+					Globals.MainAudioHandler.PlaySound("JumpSound", 0.05f);
 				}
 			}
 
@@ -143,6 +147,10 @@ namespace HonccaBuildingGame.Classes.GameObjects
 			}
 		}
 
+		/// <summary>
+		/// Places a tile infront/behind/under the player depending on direction.
+		/// </summary>
+		/// <param name="tileIndex">The tileIndex that should be shown on the tileset.</param>
 		public void PlaceTile(int tileIndex = 1)
 		{
 			int add = InputHandler.IsBeingPressed(Keys.S) ? 0 : CurrentDirection == Direction.LEFT ? -Globals.TileSize.X : Globals.TileSize.X;
@@ -175,7 +183,8 @@ namespace HonccaBuildingGame.Classes.GameObjects
 
 					JumpDisabled = false;
 				}
-			} else if (Momentum.Y < 0)
+			} 
+			else if (Momentum.Y < 0)
 			{
 				if (!Globals.TheTileMap.CanJump(GetRectangle(Axis.UP), ref frameMovement))
 				{
@@ -215,6 +224,9 @@ namespace HonccaBuildingGame.Classes.GameObjects
 			spriteBatch.Draw(Globals.MainGraphicsHandler.GetSprite("OutlineRectangle"), new Rectangle((int)Position.X + add, (int)Position.Y + Globals.TileSize.Y * 2, Globals.TileSize.X, Globals.TileSize.Y), Color.White);
 		}
 
+		/// <summary>
+		/// Reset the player, this will clear everything including inventory.
+		/// </summary>
 		public void Reset()
 		{
 			ItemInventory = new Inventory();

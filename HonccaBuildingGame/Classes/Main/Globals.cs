@@ -17,6 +17,7 @@ namespace HonccaBuildingGame.Classes.Main
 		public static GraphicsDeviceManager GDManager;
 
 		public static GraphicsHandler MainGraphicsHandler;
+		public static AudioHandler MainAudioHandler;
 
 		public static Player MainPlayer;
 		public static List<GameObject> AllGameObjects = new List<GameObject>();

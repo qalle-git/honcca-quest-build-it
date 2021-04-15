@@ -114,3 +114,9 @@ F:\Github\honcca-quest-build-it\HonccaBuildingGame\obj\Debug\netcoreapp3.1\Honcc
 F:\Github\honcca-quest-build-it\HonccaBuildingGame\obj\Debug\netcoreapp3.1\HonccaBuildingGame.pdb
 F:\Github\honcca-quest-build-it\HonccaBuildingGame\bin\Debug\netcoreapp3.1\Content\SpriteSheets\boxIdle.xnb
 F:\Github\honcca-quest-build-it\HonccaBuildingGame\bin\Debug\netcoreapp3.1\Content\SpriteSheets\doorAnimation.xnb
+F:\Github\honcca-quest-build-it\HonccaBuildingGame\bin\Debug\netcoreapp3.1\Content\Audio\jumpSound.xnb
+F:\Github\honcca-quest-build-it\HonccaBuildingGame\bin\Debug\netcoreapp3.1\Content\Sprites\inventorySlot.xnb
+F:\Github\honcca-quest-build-it\HonccaBuildingGame\bin\Debug\netcoreapp3.1\Content\Sprites\inventorySlotSelected.xnb
+F:\Github\honcca-quest-build-it\HonccaBuildingGame\bin\Debug\netcoreapp3.1\Content\Fonts\titleFont.xnb
+F:\Github\honcca-quest-build-it\HonccaBuildingGame\bin\Debug\netcoreapp3.1\Content\Fonts\pressAnyKeyFont.xnb
+F:\Github\honcca-quest-build-it\HonccaBuildingGame\bin\Debug\netcoreapp3.1\Content\Fonts\pixelFont.xnb

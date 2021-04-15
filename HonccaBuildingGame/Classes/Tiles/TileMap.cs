@@ -15,6 +15,16 @@ namespace HonccaBuildingGame.Classes.Tiles
     {
         public Tile[,][] Map;
 
+        public Point SheetDimensions
+        {
+            get
+            {
+                Texture2D tileSet = Globals.MainGraphicsHandler.GetSprite("MainTileSet");
+
+                return new Point(tileSet.Width / Globals.TileSize.X, tileSet.Height / Globals.TileSize.Y);
+            }
+        }
+
         public TileMap(string fileName)
         {
             LoadMapFromFile(fileName);
@@ -235,8 +245,6 @@ namespace HonccaBuildingGame.Classes.Tiles
 
             spriteBatch.Begin(transformMatrix: Globals.MainCamera.GetTranslationMatrix());
 
-            int numTilesX = Globals.MainGraphicsHandler.GetSprite("MainTileSet").Width / Globals.TileSize.X;
-
             for (int currentX = 0; currentX < Map.GetLength(0); currentX++)
             {
                 for (int currentY = 0; currentY < Map.GetLength(1); currentY++)
@@ -247,7 +255,7 @@ namespace HonccaBuildingGame.Classes.Tiles
 
                         if (drawTile.TileIndex > 0)
                         {
-                            spriteBatch.Draw(Globals.MainGraphicsHandler.GetSprite("MainTileSet"), new Rectangle(currentX * Globals.TileSize.X, currentY * Globals.TileSize.Y, Globals.TileSize.X, Globals.TileSize.Y), new Rectangle(drawTile.TileIndex % numTilesX * Globals.TileSize.X, drawTile.TileIndex / numTilesX * Globals.TileSize.Y, Globals.TileSize.X, Globals.TileSize.Y), Color.White);
+                            spriteBatch.Draw(Globals.MainGraphicsHandler.GetSprite("MainTileSet"), new Rectangle(currentX * Globals.TileSize.X, currentY * Globals.TileSize.Y, Globals.TileSize.X, Globals.TileSize.Y), new Rectangle(drawTile.TileIndex % SheetDimensions.X * Globals.TileSize.X, drawTile.TileIndex / SheetDimensions.X * Globals.TileSize.Y, Globals.TileSize.X, Globals.TileSize.Y), Color.White);
                         }
                     }
                 }

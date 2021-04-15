@@ -26,6 +26,22 @@ namespace HonccaBuildingGame.Classes.Main
                 }
             },
             {
+                "InventorySlot",
+
+                new Sprite()
+                {
+                    FileName = "Sprites/inventorySlot"
+                }
+            },
+            {
+                "SelectedInventorySlot",
+
+                new Sprite()
+                {
+                    FileName = "Sprites/inventorySlotSelected"
+                }
+            },
+            {
                 "BobTheBuilder",
 
                 new Sprite()

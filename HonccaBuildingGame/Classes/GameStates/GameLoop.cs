@@ -18,7 +18,7 @@ namespace HonccaBuildingGame.Classes.GameStates
 		{
             Globals.MainCamera.Move(Vector2.Zero);
 
-			Globals.MainPlayer.Position = new Vector2(0, Globals.TileSize.Y * ((Globals.ScreenSize.Y / Globals.TileSize.Y) - 2));
+			Globals.MainPlayer.Position = new Vector2(Globals.TileSize.X, Globals.TileSize.Y * ((Globals.ScreenSize.Y / Globals.TileSize.Y) - 2));
 
 			AllNPCs = new NPC[]
 			{

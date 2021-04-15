@@ -44,6 +44,7 @@ namespace HonccaBuildingGame
 			_spriteBatch = new SpriteBatch(GraphicsDevice);
 
 			Globals.MainGraphicsHandler = new GraphicsHandler();
+			Globals.MainAudioHandler = new AudioHandler();
 
 			Player thePlayer = new Player(new Vector2(Globals.ScreenSize.X / 2, 100), Globals.MainGraphicsHandler.GetSprite("BobTheBuilder"));
 
@@ -51,7 +52,12 @@ namespace HonccaBuildingGame
 
 			Globals.TheStateMachine = new StateHandler();
 
-			StartGame();
+			Globals.TheStateMachine.AddState(new SplashScreen());
+
+			Globals.TheTileMap = new TileMap("SPLASH_SCREEN");
+			Globals.TheStateMachine.AddState(Globals.TheTileMap);
+
+			//StartGame();
 		}
 
 		private void StartGame()
@@ -63,11 +69,12 @@ namespace HonccaBuildingGame
 				Globals.MainPlayer
 			};
 
-			Globals.TheTileMap = new TileMap("LEVEL_ONE");
-
 			Globals.TheStateMachine.AddState(new GameLoop());
 			Globals.TheStateMachine.AddState(new InventoryView());
 			Globals.TheStateMachine.AddState(new MapCreator());
+
+			Globals.TheTileMap = new TileMap("LEVEL_ONE");
+
 			Globals.TheStateMachine.AddState(Globals.TheTileMap);
 		}
 

@@ -8,11 +8,8 @@ namespace HonccaBuildingGame.Classes.Main
 {
 	abstract class GameState : IGameState
 	{
+		// If this is set to false, nothing will draw on this gameState.
 		public bool Visible = true;
-
-		public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-		{
-		}
 
 		public virtual void Input(GameTime gameTime)
 		{
@@ -22,7 +19,16 @@ namespace HonccaBuildingGame.Classes.Main
 		{
 		}
 
-		public virtual bool ShouldDispose()
+		public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+		{
+		}
+
+		/// <summary>
+		/// If you return true in this method it will make the gameState dissapear.
+		/// </summary>
+		/// <param name="gameTime">The current gameTime object.</param>
+		/// <returns>It returns a bool whether to shut down the gameObject or not.</returns>
+		public virtual bool ShouldDispose(GameTime gameTime)
 		{
 			return false;
 		}

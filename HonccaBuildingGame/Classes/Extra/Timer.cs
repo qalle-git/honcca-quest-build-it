@@ -7,8 +7,8 @@ namespace HonccaBuildingGame.Classes.Extra
 {
     class Timer
     {
-        private TimeSpan TimerStarted = TimeSpan.Zero;
-        private TimeSpan TimerTime;
+        public TimeSpan TimerStarted = TimeSpan.Zero;
+        public TimeSpan TimerDuration;
 
         private bool SkipFirst;
 
@@ -19,7 +19,7 @@ namespace HonccaBuildingGame.Classes.Extra
         /// <param name="firstTimeNoTimer">If you want the first timer to be skipped.</param>
         public Timer(float timerInMilliseconds, bool firstTimeNoTimer = false)
         {
-            TimerTime = TimeSpan.FromMilliseconds(timerInMilliseconds);
+            TimerDuration = TimeSpan.FromMilliseconds(timerInMilliseconds);
 
             SkipFirst = firstTimeNoTimer;
         }
@@ -39,7 +39,7 @@ namespace HonccaBuildingGame.Classes.Extra
                     return true;
             }
 
-            return currentGameTime.TotalGameTime > TimerStarted + TimerTime;
+            return currentGameTime.TotalGameTime > TimerStarted + TimerDuration;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace HonccaBuildingGame.Classes.Extra
         /// <param name="currentGameTime">The current gametime object.</param>
         public double GetTimeRemaining(GameTime currentGameTime)
         {
-            return TimerTime.TotalMilliseconds - (currentGameTime.TotalGameTime - TimerStarted).TotalMilliseconds;
+            return TimerDuration.TotalMilliseconds - (currentGameTime.TotalGameTime - TimerStarted).TotalMilliseconds;
         }
 
         /// <summary>
@@ -59,6 +59,18 @@ namespace HonccaBuildingGame.Classes.Extra
         public void ResetTimer(GameTime currentGameTime)
         {
             TimerStarted = currentGameTime.TotalGameTime;
+        }
+
+        /// <summary>
+        /// Receives the timer in percent.
+        /// </summary>
+        /// <param name="currentGameTime">The current gametime object.</param>
+        /// <returns>The current percent 0-100.</returns>
+        public float GetTimerInPercent(GameTime currentGameTime)
+        {
+            double fadePercent = Math.Clamp((currentGameTime.TotalGameTime.TotalMilliseconds - TimerStarted.TotalMilliseconds) / TimerDuration.TotalMilliseconds * 100, 0, 100);
+
+            return (float)fadePercent;
         }
     }
 }

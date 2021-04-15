@@ -38,7 +38,7 @@ namespace HonccaBuildingGame.Classes.Main
                 States[currentStateIndex].Update(gameTime);
             }
 
-            CleanupStates();
+            CleanupStates(gameTime);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -49,11 +49,11 @@ namespace HonccaBuildingGame.Classes.Main
             }
         }
 
-        private void CleanupStates()
+        private void CleanupStates(GameTime gameTime)
         {
             for (int currentStateIndex = States.Count - 1; currentStateIndex >= 0; currentStateIndex--)
             {
-                if (States[currentStateIndex].ShouldDispose())
+                if (States[currentStateIndex].ShouldDispose(gameTime))
                 {
                     States.RemoveAt(currentStateIndex);
                 }

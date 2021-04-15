@@ -42,6 +42,15 @@ namespace HonccaBuildingGame.Classes.Main
             return CurrentKeyBoardState.IsKeyDown(key) && !LastKeyBoardState.IsKeyDown(key);
         }
 
+        /// <summary>
+        /// Receive all keys who are currently pressed.
+        /// </summary>
+        /// <returns>A array with all keys being pressed.</returns>
+        public static Keys[] GetKeysCurrentlyBeingPressed()
+        {
+            return CurrentKeyBoardState.GetPressedKeys();
+        }
+
         public static Point GetMousePosition()
         {
             MouseState mouseState = Mouse.GetState();

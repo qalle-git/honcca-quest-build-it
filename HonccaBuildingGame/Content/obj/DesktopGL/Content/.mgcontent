@@ -4,10 +4,16 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Audio/jumpSound.wav</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Fonts/dialogueFont.spritefont</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Fonts/mapCreatorFont.spritefont</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Fonts/pixelFont.spritefont</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Fonts/pressAnyKeyFont.spritefont</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Fonts/titleFont.spritefont</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/coinItem.png</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/groundItem.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/inventorySlot.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/inventorySlotSelected.png</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/outlineRectangle.png</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/speechBubbleBottom.png</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/speechBubbleMiddle.png</File>
@@ -24,6 +30,12 @@
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Tiles/mainSet.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

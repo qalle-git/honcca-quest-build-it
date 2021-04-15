@@ -48,7 +48,7 @@ namespace HonccaBuildingGame.Classes.GameStates
                     {
                         Point mousePosition = GetMousePosition(true);
 
-                        CurrentTileIndex = (mousePosition.Y > 0 ? mousePosition.X + (mousePosition.Y * 17) : mousePosition.X);
+                        CurrentTileIndex = mousePosition.Y > 0 ? mousePosition.X + (mousePosition.Y * 17) : mousePosition.X;
                     }
                     else
                     {
@@ -68,6 +68,12 @@ namespace HonccaBuildingGame.Classes.GameStates
                     bool shouldGoUp = mouseState.ScrollWheelValue > LastScrollValue;
 
                     Globals.MainCamera.Move(new Vector2(0, Globals.MainCamera.Position.Y + (shouldGoUp ? 100 : -100)));
+                }
+                else if (mouseState.MiddleButton == ButtonState.Pressed)
+                {
+                    ButtonCooldownTimer.ResetTimer(gameTime);
+
+                    CopyTopLayer();
                 }
 
                 LastScrollValue = mouseState.ScrollWheelValue;
@@ -101,7 +107,7 @@ namespace HonccaBuildingGame.Classes.GameStates
                             {
                                 for (int currentY = 0; currentY < Globals.TheTileMap.Map.GetLength(1); currentY++)
                                 {
-                                    Globals.TheTileMap.Map[currentX, currentY] = new Tile[3];
+                                    Globals.TheTileMap.Map[currentX, currentY] = new Tile[10];
                                 }
                             }
 
@@ -125,6 +131,25 @@ namespace HonccaBuildingGame.Classes.GameStates
             }
         }
         #endregion
+
+        private void CopyTopLayer()
+        {
+            Point mousePosition = GetMousePosition();
+
+            Tile[] tilesAtPosition = Globals.TheTileMap.Map[mousePosition.X, mousePosition.Y];
+
+            for (int currentTileIndex = tilesAtPosition.Length - 1; currentTileIndex >= 0; currentTileIndex--)
+            {
+                Tile currentTile = tilesAtPosition[currentTileIndex];
+
+                if (currentTile.TileIndex > 0)
+                {
+                    CurrentTileIndex = currentTile.TileIndex;
+
+                    break;
+                }
+            }
+        }
 
         private void FillMap()
         {

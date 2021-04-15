@@ -31,11 +31,19 @@ namespace HonccaBuildingGame.Classes.GameObjects
             Texture = startTexture;
         }
 
+        /// <summary>
+        /// Get the hitbox rectangle from the gameobject.
+        /// </summary>
+        /// <returns>A rectangle containing the hitbox.</returns>
         public virtual Rectangle GetRectangle()
         {
             return new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
         }
 
+        /// <summary>
+        /// This will be called each frame and should be used to update physics, input etc.
+        /// </summary>
+        /// <param name="gameTime">The current gametime object.</param>
         public virtual void Update(GameTime gameTime)
         {
             if (PhysicsEnabled)
@@ -54,8 +62,16 @@ namespace HonccaBuildingGame.Classes.GameObjects
             }
         }
 
+        /// <summary>
+        /// This will be called each frame and should be used to draw character etc.
+        /// </summary>
+        /// <param name="gameTime">The current gametime object.</param>
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
 
+        /// <summary>
+        /// This handles the physics, makes gravity and collision work.
+        /// </summary>
+        /// <param name="gameTime">The current gametime object.</param>
         public virtual void Physics(GameTime gameTime)
         {
             Momentum.Y += 1000 * (float)gameTime.ElapsedGameTime.TotalSeconds;

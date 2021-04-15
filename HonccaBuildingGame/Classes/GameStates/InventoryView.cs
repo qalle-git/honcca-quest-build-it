@@ -24,9 +24,9 @@ namespace HonccaBuildingGame.Classes.GameStates
 			Keys.D4
 		};
 
-		private const int IconSize = 16;
+		private const int IconSize = 32;
 
-		public InventoryView() => CountFont = MainGame.Instance.Content.Load<SpriteFont>("Fonts/mapCreatorFont");
+		public InventoryView() => CountFont = MainGame.Instance.Content.Load<SpriteFont>("Fonts/pixelFont");
 
 		public override void Input(GameTime gameTime)
 		{
@@ -96,9 +96,9 @@ namespace HonccaBuildingGame.Classes.GameStates
 			Item holdingItem = playerInventory.GetItemOnSlot(InventorySlot);
 
 			bool facingRight = Globals.MainPlayer.CurrentDirection == Direction.RIGHT;
-			bool isIdle = false;
+			bool isIdle = InputHandler.IsBeingPressed(Keys.S);
 
-			int pixelsToAdd = facingRight ? (Globals.TileSize.X + 16) : isIdle ? 0 : -(Globals.TileSize.X + 16);
+			int pixelsToAdd = isIdle ? 0 : facingRight ? (Globals.TileSize.X + 16) : -(Globals.TileSize.X + 16);
 
 			if (holdingItem.Count > 0)
 			{
@@ -154,13 +154,15 @@ namespace HonccaBuildingGame.Classes.GameStates
 			{
 				Item currentItem = playerInventory.Items[currentItemSlot];
 
-				spriteBatch.Draw(Globals.MainGraphicsHandler.GetSprite("OutlineRectangle"), new Rectangle(currentItemSlot * Globals.TileSize.X, 0, Globals.TileSize.X, Globals.TileSize.Y), InventorySlot == currentItemSlot ? Color.Green : Color.White);
+				Texture2D inventorySlotTexture = InventorySlot == currentItemSlot ? Globals.MainGraphicsHandler.GetSprite("SelectedInventorySlot") : Globals.MainGraphicsHandler.GetSprite("InventorySlot");
+
+				spriteBatch.Draw(inventorySlotTexture, new Rectangle(currentItemSlot * Globals.TileSize.X, 0, Globals.TileSize.X, Globals.TileSize.Y), Color.White);
 				
 				if (currentItem.Count > 0)
 				{
 					spriteBatch.Draw(Globals.MainGraphicsHandler.GetSprite(currentItem.Name), new Rectangle(currentItemSlot * Globals.TileSize.X + IconSize / 2, 0 + IconSize / 2, Globals.TileSize.X - IconSize, Globals.TileSize.Y - IconSize), Color.White);
 
-					spriteBatch.DrawString(CountFont, currentItem.Count.ToString(), new Vector2(currentItemSlot * Globals.TileSize.X + 4, 0), Color.White);
+					spriteBatch.DrawString(CountFont, currentItem.Count.ToString(), new Vector2(currentItemSlot * Globals.TileSize.X + 9, 9), Color.White, 0f, Vector2.Zero, 0.8f, SpriteEffects.None, 0f);
 				}
 			}
 

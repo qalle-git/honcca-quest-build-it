@@ -34,6 +34,7 @@ namespace HonccaBuildingGame.Classes.Pickups
 					Momentum.Y = 0;
 				}
 			}
+
 			if (Momentum.X > 0)
 			{
 				Momentum.X -= 750 * (float)gameTime.ElapsedGameTime.TotalSeconds;
