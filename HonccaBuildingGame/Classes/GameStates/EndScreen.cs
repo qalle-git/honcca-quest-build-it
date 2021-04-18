@@ -43,7 +43,7 @@ namespace HonccaBuildingGame.Classes.GameStates
 
             if (FinishedGame == TimeSpan.Zero)
             {
-                FinishedGame = gameTime.TotalGameTime;
+                FinishedGame = gameTime.TotalGameTime - MainGame.GameStarted;
             }
 
             if (FadeTimer.IsFinished(gameTime))

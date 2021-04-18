@@ -35,11 +35,14 @@ namespace HonccaBuildingGame
 		{
 			Instance = this;
 
+			Window.Title = "Honcca Quest: Build It!";
+
 			MediaPlayer.IsRepeating = true;
 			MediaPlayer.Volume = 0.1f;
 
 			Globals.GDManager.PreferredBackBufferWidth = Globals.ScreenSize.X;
 			Globals.GDManager.PreferredBackBufferHeight = Globals.ScreenSize.Y;
+			Globals.GDManager.IsFullScreen = true;
 
 			Globals.GDManager.ApplyChanges();
 

@@ -106,7 +106,6 @@ F:\Github\honcca-quest-build-it\HonccaBuildingGame\bin\Debug\netcoreapp3.1\runti
 F:\Github\honcca-quest-build-it\HonccaBuildingGame\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
 F:\Github\honcca-quest-build-it\HonccaBuildingGame\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
 F:\Github\honcca-quest-build-it\HonccaBuildingGame\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
-F:\Github\honcca-quest-build-it\HonccaBuildingGame\obj\Debug\netcoreapp3.1\HonccaBuildingGame.csprojAssemblyReference.cache
 F:\Github\honcca-quest-build-it\HonccaBuildingGame\obj\Debug\netcoreapp3.1\HonccaBuildingGame.AssemblyInfoInputs.cache
 F:\Github\honcca-quest-build-it\HonccaBuildingGame\obj\Debug\netcoreapp3.1\HonccaBuildingGame.AssemblyInfo.cs
 F:\Github\honcca-quest-build-it\HonccaBuildingGame\obj\Debug\netcoreapp3.1\HonccaBuildingGame.csproj.CopyComplete
@@ -135,3 +134,4 @@ F:\Github\honcca-quest-build-it\HonccaBuildingGame\bin\Debug\netcoreapp3.1\Conte
 F:\Github\honcca-quest-build-it\HonccaBuildingGame\bin\Debug\netcoreapp3.1\Content\Sprites\eButton.xnb
 F:\Github\honcca-quest-build-it\HonccaBuildingGame\bin\Debug\netcoreapp3.1\Content\Sprites\fButton.xnb
 F:\Github\honcca-quest-build-it\HonccaBuildingGame\bin\Debug\netcoreapp3.1\Content\Sprites\rButton.xnb
+F:\Github\honcca-quest-build-it\HonccaBuildingGame\obj\Debug\netcoreapp3.1\HonccaBuildingGame.csprojAssemblyReference.cache
