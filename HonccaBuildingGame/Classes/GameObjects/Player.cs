@@ -6,8 +6,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HonccaBuildingGame.Classes.GameObjects
 {
@@ -21,11 +19,11 @@ namespace HonccaBuildingGame.Classes.GameObjects
 
         public Player(Vector2 startPosition, Texture2D startTexture) : base(startPosition, startTexture)
         {
-            SetAnimationData(new Point(5, 2), new Point(0, 5), Direction.RIGHT, 120, 1);
+            SetAnimationData(new Point(5, 2), new Point(0, 5), Flip.RIGHT, 120, 1);
 
 			CurrentFrame.Y = 2;
 
-			TileSize.Y = 128;
+			TextureSize.Y = 128;
 
             CurrentState = State.ANIMATING;
 
@@ -56,6 +54,7 @@ namespace HonccaBuildingGame.Classes.GameObjects
 		public override void Update(GameTime gameTime)
 		{
             Input(gameTime);
+			FootstepHandler(gameTime);
 
 			if (IdleTimer.IsFinished(gameTime))
 			{
@@ -71,6 +70,55 @@ namespace HonccaBuildingGame.Classes.GameObjects
 			base.Update(gameTime);
 		}
 
+		#region Footsteps
+		private readonly Timer FootstepTimer = new Timer(250);
+		private int LastFootstepIndex = -1;
+
+		/// <summary>
+		/// This will play random footstep sounds each 250 milliseconds.
+		/// </summary>
+		/// <param name="gameTime">The current gameTime object.</param>
+		private void FootstepHandler(GameTime gameTime)
+		{
+			if (JumpDisabled)
+				return;
+
+			if (Momentum.X != 0 && Momentum.Y == 0)
+			{
+				if (FootstepTimer.IsFinished(gameTime))
+				{
+					int footstepIndex = GetFootstepIndex();
+
+					Console.WriteLine($"Playing {footstepIndex} with last {LastFootstepIndex}");
+
+					LastFootstepIndex = footstepIndex;
+
+					Globals.MainAudioHandler.PlaySound($"STEP_{footstepIndex + 1}", 0.25f);
+
+					FootstepTimer.ResetTimer(gameTime);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Generate a random footstepIndex, you can not receive the last one played.
+		/// </summary>
+		/// <returns>A footstepindex.</returns>
+		private int GetFootstepIndex()
+		{
+			int newFootstepIndex = Globals.RandomGenerator.Next(0, 4);
+
+			if (newFootstepIndex == LastFootstepIndex)
+				return GetFootstepIndex();
+
+			return newFootstepIndex;
+		}
+		#endregion
+
+		/// <summary>
+		/// Put the player object into idle.
+		/// </summary>
+		/// <param name="gameTime">The current gameTime object.</param>
 		private void Idle(GameTime gameTime)
 		{
 			if (CurrentFrame.X > 3)
@@ -83,31 +131,21 @@ namespace HonccaBuildingGame.Classes.GameObjects
 			IdleTimer.ResetTimer(gameTime);
 		}
 
+		/// <summary>
+		/// Make the player able to take inputs.
+		/// </summary>
+		/// <param name="gameTime">The current gameTime object.</param>
 		private void Input(GameTime gameTime)
 		{
-			KeyboardState keyboardState = Keyboard.GetState();
-
-			if (keyboardState.IsKeyDown(Keys.A))
+			if (InputHandler.IsBeingPressed(Keys.A))
 			{
-				Momentum.X = -15000 * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-				CurrentFrame.Y = 2;
-				CurrentState = State.ANIMATING;
-				CurrentDirection = Direction.LEFT;
-
-				IdleTimer.ResetTimer(gameTime);
+				Go(gameTime, false);
 			}
-			else if (keyboardState.IsKeyDown(Keys.D))
+			else if (InputHandler.IsBeingPressed(Keys.D))
 			{
-				Momentum.X = 15000 * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-				CurrentFrame.Y = 2;
-				CurrentState = State.ANIMATING;
-				CurrentDirection = Direction.RIGHT;
-
-				IdleTimer.ResetTimer(gameTime);
+				Go(gameTime, true);
 			}
-			else if (keyboardState.IsKeyDown(Keys.S) && Momentum.X == 0)
+			else if (InputHandler.IsBeingPressed(Keys.S) && Momentum.X == 0)
 			{
 				Idle(gameTime);
 			}
@@ -116,19 +154,12 @@ namespace HonccaBuildingGame.Classes.GameObjects
 				Momentum.X = 0;
 			}
 
-			if (keyboardState.IsKeyDown(Keys.W))
+			if (InputHandler.IsBeingPressed(Keys.W))
 			{
-				if (!JumpDisabled)
-				{
-					JumpDisabled = true;
-
-					Momentum.Y = -700;
-
-					Globals.MainAudioHandler.PlaySound("JumpSound", 0.05f);
-				}
+				Jump(gameTime);
 			}
 
-			Keys[] pressedKeys = keyboardState.GetPressedKeys();
+			Keys[] pressedKeys = InputHandler.GetKeysCurrentlyBeingPressed();
 
 			if (pressedKeys.Length <= 0)
 			{
@@ -148,12 +179,45 @@ namespace HonccaBuildingGame.Classes.GameObjects
 		}
 
 		/// <summary>
+		/// This will make the player jump.
+		/// </summary>
+		/// <param name="gameTime">The current gameTime object.</param>
+		private void Jump(GameTime gameTime)
+		{
+			if (JumpDisabled)  
+				return;
+
+			JumpDisabled = true;
+
+			Momentum.Y = -700;
+
+			Globals.MainAudioHandler.PlaySound("JumpSound", 0.05f);
+		}
+
+		/// <summary>
+		/// This will make the player go in a certain direction.
+		/// </summary>
+		/// <param name="gameTime">The current gameTime object.</param>
+		/// <param name="right">Whether to move the character to the right or left.</param>
+		private void Go(GameTime gameTime, bool right)
+		{
+			Momentum.X = (right ? 15000 : -15000) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+			CurrentFrame.Y = 2;
+			CurrentState = State.ANIMATING;
+
+			TextureDirection = right ? Flip.RIGHT : Flip.LEFT;
+
+			IdleTimer.ResetTimer(gameTime);
+		}
+
+		/// <summary>
 		/// Places a tile infront/behind/under the player depending on direction.
 		/// </summary>
 		/// <param name="tileIndex">The tileIndex that should be shown on the tileset.</param>
 		public void PlaceTile(int tileIndex = 1)
 		{
-			int add = InputHandler.IsBeingPressed(Keys.S) ? 0 : CurrentDirection == Direction.LEFT ? -Globals.TileSize.X : Globals.TileSize.X;
+			int add = InputHandler.IsBeingPressed(Keys.S) ? 0 : TextureDirection == Flip.LEFT ? -Globals.TileSize.X : Globals.TileSize.X;
 
 			Vector2 placePosition = new Vector2(Position.X + add, Position.Y + Globals.TileSize.Y * 2);
 
@@ -167,6 +231,8 @@ namespace HonccaBuildingGame.Classes.GameObjects
 				TileType = Tile.Type.COLLISION,
 				TileLayer = 4
 			};
+
+			Globals.MainAudioHandler.PlaySound("PLACE_BLOCK", 0.15f);
 		}
 
 		public override void Physics(GameTime gameTime)
@@ -207,7 +273,7 @@ namespace HonccaBuildingGame.Classes.GameObjects
 
 				if (currentTile.TileIndex == 22)
 				{
-					MainGame.Instance.RestartGame();
+					MainGame.Instance.RestartGame(gameTime);
 				}
 			}
 			
@@ -219,7 +285,7 @@ namespace HonccaBuildingGame.Classes.GameObjects
 		{
 			base.Draw(gameTime, spriteBatch);
 
-			int add = InputHandler.IsBeingPressed(Keys.S) ? 0 : CurrentDirection == Direction.LEFT ? -Globals.TileSize.X : Globals.TileSize.X;
+			int add = InputHandler.IsBeingPressed(Keys.S) ? 0 : TextureDirection == Flip.LEFT ? -Globals.TileSize.X : Globals.TileSize.X;
 
 			spriteBatch.Draw(Globals.MainGraphicsHandler.GetSprite("OutlineRectangle"), new Rectangle((int)Position.X + add, (int)Position.Y + Globals.TileSize.Y * 2, Globals.TileSize.X, Globals.TileSize.Y), Color.White);
 		}

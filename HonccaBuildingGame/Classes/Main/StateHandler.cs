@@ -1,11 +1,7 @@
-﻿using HonccaBuildingGame.Classes.GameObjects;
-using HonccaBuildingGame.Classes.GameStates;
-using HonccaBuildingGame.Classes.Tiles;
+﻿using HonccaBuildingGame.Classes.GameStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace HonccaBuildingGame.Classes.Main
 {
@@ -49,6 +45,10 @@ namespace HonccaBuildingGame.Classes.Main
             }
         }
 
+        /// <summary>
+        /// This method checks whether any gamestate needs to be deleted, if so it deletes it.
+        /// </summary>
+        /// <param name="gameTime">The current gameTime object.</param>
         private void CleanupStates(GameTime gameTime)
         {
             for (int currentStateIndex = States.Count - 1; currentStateIndex >= 0; currentStateIndex--)
@@ -60,12 +60,12 @@ namespace HonccaBuildingGame.Classes.Main
             }
         }
 
+        /// <summary>
+        /// This will clear all current states active.
+        /// </summary>
         public void Clear()
         {
-            for (int currentStateIndex = States.Count - 1; currentStateIndex >= 0; currentStateIndex--)
-            {
-                States.RemoveAt(currentStateIndex);
-            }
+            States.Clear();
         }
 
         /// <summary>

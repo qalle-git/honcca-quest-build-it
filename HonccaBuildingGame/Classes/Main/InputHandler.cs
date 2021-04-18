@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Numerics;
-using System.Text;
 
 namespace HonccaBuildingGame.Classes.Main
 {
@@ -51,6 +47,10 @@ namespace HonccaBuildingGame.Classes.Main
             return CurrentKeyBoardState.GetPressedKeys();
         }
 
+        /// <summary>
+        /// Receive the mouse position.
+        /// </summary>
+        /// <returns>A point object with mouseX and mouseY</returns>
         public static Point GetMousePosition()
         {
             MouseState mouseState = Mouse.GetState();

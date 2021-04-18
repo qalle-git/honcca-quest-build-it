@@ -4,23 +4,21 @@ using HonccaBuildingGame.Classes.Main;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.Xna.Framework.Media;
 
 namespace HonccaBuildingGame.Classes.GameStates
 {
 	class SplashScreen : GameState
 	{
-		private SpriteFont TitleFont;
-		private SpriteFont PressAnyKeyFont;
+		public static SpriteFont TitleFont;
+		public static SpriteFont PressAnyKeyFont;
 
 		private bool Reverse = false;
 
 		private readonly Timer FadeTimer = new Timer(1500);
 		private Timer StartGameTimer;
 
-		private Animation PlayerShowcase;
+		private readonly Animation PlayerShowcase;
 
 		public SplashScreen()
 		{
@@ -28,12 +26,14 @@ namespace HonccaBuildingGame.Classes.GameStates
 			PressAnyKeyFont = MainGame.Instance.Content.Load<SpriteFont>("Fonts/pressAnyKeyFont");
 
 			PlayerShowcase = new Animation(new Vector2(Globals.ScreenSize.X / 2 - Globals.TileSize.X / 2, Globals.TileSize.Y * 4), Globals.MainGraphicsHandler.GetSprite("BobTheBuilder"));
-			PlayerShowcase.SetAnimationData(new Point(5, 2), new Point(0, 4), Animation.Direction.RIGHT, 120, 1);
+			PlayerShowcase.SetAnimationData(new Point(5, 2), new Point(0, 4), Animation.Flip.RIGHT, 120, 1);
 
 			PlayerShowcase.CurrentFrame.Y = 0;
 			PlayerShowcase.CurrentState = Animation.State.ANIMATING;
 
-			PlayerShowcase.TileSize.Y = 128;
+			PlayerShowcase.TextureSize.Y = 128;
+
+			MediaPlayer.Play(MainGame.MainMenuSong);
 		}
 
 		public override void Update(GameTime gameTime)
@@ -50,7 +50,6 @@ namespace HonccaBuildingGame.Classes.GameStates
 			if (InputHandler.GetKeysCurrentlyBeingPressed().Length > 0)
 			{
 				StartTimer(gameTime);
-
 			}
 
 			MouseState mouseState = Mouse.GetState();
@@ -67,12 +66,21 @@ namespace HonccaBuildingGame.Classes.GameStates
 			if (StartGameTimer != null)
 			{
 				if (StartGameTimer.IsFinished(gameTime))
-					MainGame.Instance.RestartGame();
+				{
+					MediaPlayer.Play(MainGame.BackgroundSong);
+					MediaPlayer.Volume = 0.003f;
+
+					MainGame.Instance.RestartGame(gameTime);
+				}
 			}
 
 			PlayerShowcase.Update(gameTime);
 		}
 
+		/// <summary>
+		/// Start the timer that will count down to start the real game.
+		/// </summary>
+		/// <param name="gameTime">The current gametime object.</param>
 		private void StartTimer(GameTime gameTime)
 		{
 			if (StartGameTimer != null)

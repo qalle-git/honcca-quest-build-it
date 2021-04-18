@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Fonts/pixelFont.spritefont</SourceFile>
-  <SourceTime>2021-04-16T00:55:29.4276246+02:00</SourceTime>
+  <SourceTime>2021-04-18T00:26:59.1213147+02:00</SourceTime>
   <DestFile>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/bin/DesktopGL/Content/Fonts/pixelFont.xnb</DestFile>
-  <DestTime>2021-04-16T00:55:40.4752596+02:00</DestTime>
+  <DestTime>2021-04-18T00:27:02.7880931+02:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54+02:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

@@ -4,9 +4,7 @@ using HonccaBuildingGame.Classes.Pickups;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using static HonccaBuildingGame.Classes.GameObjects.Animation;
 
 namespace HonccaBuildingGame.Classes.GameStates
@@ -16,6 +14,7 @@ namespace HonccaBuildingGame.Classes.GameStates
 		private readonly SpriteFont CountFont;
 
 		private int InventorySlot = 0;
+		// Which keys control slot 1,2,3,4.
 		private readonly Keys[] InventoryKeys = new Keys[]
 		{
 			Keys.D1,
@@ -24,6 +23,7 @@ namespace HonccaBuildingGame.Classes.GameStates
 			Keys.D4
 		};
 
+		// This is the size of the inventory item slot image.
 		private const int IconSize = 32;
 
 		public InventoryView() => CountFont = MainGame.Instance.Content.Load<SpriteFont>("Fonts/pixelFont");
@@ -95,7 +95,7 @@ namespace HonccaBuildingGame.Classes.GameStates
 
 			Item holdingItem = playerInventory.GetItemOnSlot(InventorySlot);
 
-			bool facingRight = Globals.MainPlayer.CurrentDirection == Direction.RIGHT;
+			bool facingRight = Globals.MainPlayer.TextureDirection == Flip.RIGHT;
 			bool isIdle = InputHandler.IsBeingPressed(Keys.S);
 
 			int pixelsToAdd = isIdle ? 0 : facingRight ? (Globals.TileSize.X + 16) : -(Globals.TileSize.X + 16);

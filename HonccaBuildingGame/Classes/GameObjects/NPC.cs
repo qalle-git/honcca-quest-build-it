@@ -1,15 +1,12 @@
 ﻿using HonccaBuildingGame.Classes.Extra;
-using HonccaBuildingGame.Classes.Main;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HonccaBuildingGame.Classes.GameObjects
 {
     class NPC : Animation
     {
+        // The dialogue connected to the npc.
         public Dialogue NPCDialogue;
 
         public NPC(Vector2 position, Texture2D texture, string[] dialogue) : base(position, texture)

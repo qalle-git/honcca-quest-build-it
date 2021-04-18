@@ -4,29 +4,33 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Audio/dialogue.wav</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Audio/jumpSound.wav</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Audio/mainBackgroundTheme.mp3</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Audio/mainMenuAudio.mp3</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Audio/pickupItem.wav</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Audio/placeBlock.wav</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Audio/stepSound_1.wav</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Audio/stepSound_2.wav</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Audio/stepSound_3.wav</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Audio/stepSound_4.wav</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Fonts/dialogueFont.spritefont</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Fonts/mapCreatorFont.spritefont</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Fonts/pixelFont.spritefont</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Fonts/pressAnyKeyFont.spritefont</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Fonts/titleFont.spritefont</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/coinItem.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/eButton.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/fButton.png</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/groundItem.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/interactNPC.png</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/inventorySlot.png</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/inventorySlotSelected.png</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/outlineRectangle.png</File>
-    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/speechBubbleBottom.png</File>
-    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/speechBubbleMiddle.png</File>
-    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/speechBubbleTop.png</File>
-    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/SpriteSheets/boxIdle.png</File>
+    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/rButton.png</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/SpriteSheets/coinSpritesheet.png</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/SpriteSheets/IdleSpriteSheet.png</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/SpriteSheets/npcOneSpritesheet.png</File>
-    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Tiles/Dark_lvl0.png</File>
-    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Tiles/Dark_lvl1.png</File>
-    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Tiles/Dark_lvl2.png</File>
-    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Tiles/Dark_lvl3.png</File>
-    <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Tiles/Dark_lvl4.png</File>
     <File>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Tiles/mainSet.png</File>
   </SourceFiles>
   <DestFiles>
@@ -46,12 +50,16 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File>SpriteSheets/idleSpriteSheet.png</File>
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>

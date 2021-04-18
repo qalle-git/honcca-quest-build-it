@@ -1,16 +1,12 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HonccaBuildingGame.Classes.Inventories
+﻿namespace HonccaBuildingGame.Classes.Inventories
 {
+	/// <summary>
+	/// A struct used inside the inventory class.
+	/// </summary>
 	struct Item
 	{
 		public string Name;
 		public int Count;
 		public int Slot;
-
-		public Texture2D Image;
 	}
 }

@@ -5,6 +5,7 @@ using HonccaBuildingGame.Classes.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 
@@ -14,7 +15,12 @@ namespace HonccaBuildingGame
 	{
 		public static MainGame Instance;
 
-		private SpriteBatch _spriteBatch;
+		private SpriteBatch TheSpriteBatch;
+
+		public static Song MainMenuSong;
+		public static Song BackgroundSong;
+
+		public static TimeSpan GameStarted;
 
 		public MainGame()
 		{
@@ -29,6 +35,9 @@ namespace HonccaBuildingGame
 		{
 			Instance = this;
 
+			MediaPlayer.IsRepeating = true;
+			MediaPlayer.Volume = 0.1f;
+
 			Globals.GDManager.PreferredBackBufferWidth = Globals.ScreenSize.X;
 			Globals.GDManager.PreferredBackBufferHeight = Globals.ScreenSize.Y;
 
@@ -36,12 +45,17 @@ namespace HonccaBuildingGame
 
 			Globals.MainCamera = new Camera();
 
+			Globals.RandomGenerator = new Random();
+
 			base.Initialize();
 		}
 
 		protected override void LoadContent()
 		{
-			_spriteBatch = new SpriteBatch(GraphicsDevice);
+			TheSpriteBatch = new SpriteBatch(GraphicsDevice);
+
+			MainMenuSong = Content.Load<Song>("Audio/mainMenuAudio");
+			BackgroundSong = Content.Load<Song>("Audio/mainBackgroundTheme");
 
 			Globals.MainGraphicsHandler = new GraphicsHandler();
 			Globals.MainAudioHandler = new AudioHandler();
@@ -60,7 +74,11 @@ namespace HonccaBuildingGame
 			//StartGame();
 		}
 
-		private void StartGame()
+		/// <summary>
+		/// This will start the game.
+		/// </summary>
+		/// <param name="gameTime">The current gameTime object.</param>
+		private void StartGame(GameTime gameTime)
 		{
 			Globals.MainPlayer.Reset();
 
@@ -71,18 +89,27 @@ namespace HonccaBuildingGame
 
 			Globals.TheStateMachine.AddState(new GameLoop());
 			Globals.TheStateMachine.AddState(new InventoryView());
-			Globals.TheStateMachine.AddState(new MapCreator());
+			//Globals.TheStateMachine.AddState(new MapCreator());
 
 			Globals.TheTileMap = new TileMap("LEVEL_ONE");
 
 			Globals.TheStateMachine.AddState(Globals.TheTileMap);
+
+			GameStarted = gameTime.TotalGameTime;
 		}
 
-		public void RestartGame()
+		/// <summary>
+		/// This will restart the whole game.
+		/// </summary>
+		/// <param name="gameTime">The current gameTime object.</param>
+		public void RestartGame(GameTime gameTime)
 		{
 			Globals.TheStateMachine.Clear();
 
-			StartGame();
+			MediaPlayer.Play(MainGame.BackgroundSong);
+			MediaPlayer.Volume = 0.003f;
+
+			StartGame(gameTime);
 		}
 
 		protected override void Update(GameTime gameTime)
@@ -107,11 +134,15 @@ namespace HonccaBuildingGame
 			base.Update(gameTime);
 		}
 
+		/// <summary>
+		/// This will check if the user is currently pressing R and then restart the game.
+		/// </summary>
+		/// <param name="gameTime">The current gameTime object.</param>
 		private void RestartHandler(GameTime gameTime)
 		{
 			if (InputHandler.HasKeyJustBeenPressed(Keys.R))
 			{
-				RestartGame();
+				RestartGame(gameTime);
 			}
 		}
 
@@ -119,16 +150,16 @@ namespace HonccaBuildingGame
 		{
 			GraphicsDevice.Clear(Color.CornflowerBlue);
 
-			Globals.TheStateMachine.Draw(gameTime, _spriteBatch);
+			Globals.TheStateMachine.Draw(gameTime, TheSpriteBatch);
 
-			_spriteBatch.Begin(transformMatrix: Globals.MainCamera.GetTranslationMatrix());
+			TheSpriteBatch.Begin(transformMatrix: Globals.MainCamera.GetTranslationMatrix());
 
 			for (int currentGameObjectIndex = Globals.AllGameObjects.Count - 1; currentGameObjectIndex >= 0; currentGameObjectIndex--)
 			{
-				Globals.AllGameObjects[currentGameObjectIndex].Draw(gameTime, _spriteBatch);
+				Globals.AllGameObjects[currentGameObjectIndex].Draw(gameTime, TheSpriteBatch);
 			}
 
-			_spriteBatch.End();
+			TheSpriteBatch.End();
 
 			base.Draw(gameTime);
 		}

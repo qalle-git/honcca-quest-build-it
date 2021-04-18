@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HonccaBuildingGame.Classes.Inventories
 {
@@ -11,19 +9,14 @@ namespace HonccaBuildingGame.Classes.Inventories
 		public Inventory()
 		{
 			Items = new Item[4];
-
-			//AddItem(new Item()
-			//{
-			//	Name = "DIRT_BLOCK",
-			//	Count = 10
-			//});
-			//AddItem(new Item()
-			//{
-			//	Name = "COIN",
-			//	Count = 2
-			//});
 		}
 
+		/// <summary>
+		/// Add a item to this inventory.
+		/// </summary>
+		/// <param name="itemToAdd">The item that should be added, count and name specified.</param>
+		/// <param name="slotIndex">If you want a certain slot then put this here, leave blank if you want a free slot.</param>
+		/// <returns>If the item got added or not.</returns>
 		public bool AddItem(Item itemToAdd, int slotIndex = -1)
 		{
 			Item existingItem = GetItemWithName(itemToAdd.Name);
@@ -34,18 +27,18 @@ namespace HonccaBuildingGame.Classes.Inventories
 
 				itemToAdd.Count += existingItem.Count;
 
-				Console.WriteLine("Adding new item, but already existing so adding count.");
+				//Console.WriteLine("Adding new item, but already existing so adding count.");
 			}
 			else if (GetEmptySlot() == -1)
 			{
-				Console.WriteLine("Inventory full, skip add.");
+				//Console.WriteLine("Inventory full, skip add.");
 
 				return false;
 			}
 
 			if (slotIndex == -1)
 			{
-				Console.WriteLine("No slot specified, just add in a free one.");
+				//Console.WriteLine("No slot specified, just add in a free one.");
 
 				slotIndex = GetEmptySlot();
 			}
@@ -59,6 +52,12 @@ namespace HonccaBuildingGame.Classes.Inventories
 			return true;
 		}
 
+		/// <summary>
+		/// Remove a item from this inventory.
+		/// </summary>
+		/// <param name="itemToRemove">The item that should be removed, count and name specified.</param>
+		/// <param name="slotIndex">If you want a certain slot then put this here, leave blank if you want a slot where this item exists.</param>
+		/// <returns>If the item got removed or not.</returns>
 		public bool RemoveItem(Item itemToRemove, int slotIndex = -1)
 		{
 			if (slotIndex != -1)
@@ -83,7 +82,7 @@ namespace HonccaBuildingGame.Classes.Inventories
 						};
 					};
 
-					Console.WriteLine($"Removed {itemToRemove.Name} on already existing one.");
+					//Console.WriteLine($"Removed {itemToRemove.Name} on already existing one.");
 
 					return true;
 				}
@@ -109,14 +108,18 @@ namespace HonccaBuildingGame.Classes.Inventories
 					};
 				};
 
-				Console.WriteLine($"Removed already existing {itemToRemove.Name} from count {Items[itemExists.Slot].Count + itemToRemove.Count} to: {Items[itemExists.Slot].Count} on slot: {itemExists.Slot}");
+				//Console.WriteLine($"Removed already existing {itemToRemove.Name} from count {Items[itemExists.Slot].Count + itemToRemove.Count} to: {Items[itemExists.Slot].Count} on slot: {itemExists.Slot}");
 			}
 
-			Console.WriteLine($"Removed {itemToRemove.Name} with count {itemToRemove.Count}");
+			//Console.WriteLine($"Removed {itemToRemove.Name} with count {itemToRemove.Count}");
 
 			return true;
 		}
 
+		/// <summary>
+		/// This will give you a empty slot inside the inventory.
+		/// </summary>
+		/// <returns>A slot if there is any free one, -1 if inventory is full.</returns>
 		private int GetEmptySlot()
 		{
 			for (int currentItemIndex = 0; currentItemIndex < Items.Length; currentItemIndex++)
@@ -132,6 +135,11 @@ namespace HonccaBuildingGame.Classes.Inventories
 			return -1;
 		}
 
+		/// <summary>
+		/// Get item count from a certain itemName
+		/// </summary>
+		/// <param name="itemName">The itemName of the item you want.</param>
+		/// <returns>A Item object with slot, count etc.</returns>
 		public Item GetItemWithName(string itemName)
 		{
 			for (int currentItemIndex = 0; currentItemIndex < Items.Length; currentItemIndex++)
@@ -152,6 +160,11 @@ namespace HonccaBuildingGame.Classes.Inventories
 			};
 		}
 
+		/// <summary>
+		/// If you need the item on a exact slot.
+		/// </summary>
+		/// <param name="slotIndex">The slot where the item is.</param>
+		/// <returns>A item if a item exists on this slot.</returns>
 		public Item GetItemOnSlot(int slotIndex)
 		{
 			for (int currentItemIndex = 0; currentItemIndex < Items.Length; currentItemIndex++)

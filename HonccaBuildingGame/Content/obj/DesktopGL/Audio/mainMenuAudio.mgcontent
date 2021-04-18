@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Audio/mainMenuAudio.mp3</SourceFile>
+  <SourceTime>2021-04-16T13:29:25.0668017+02:00</SourceTime>
+  <DestFile>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/bin/DesktopGL/Audio/mainMenuAudio.xnb</DestFile>
+  <DestTime>2021-04-18T00:23:46.712112+02:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2018-12-08T17:35:54+01:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2018-12-08T17:35:54+01:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/bin/DesktopGL/Audio/mainMenuAudio.ogg</string>
+  </BuildOutput>
+</PipelineBuildEvent>

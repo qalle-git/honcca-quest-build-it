@@ -1,9 +1,6 @@
 ﻿using HonccaBuildingGame.Classes.Main;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HonccaBuildingGame.Classes.GameObjects
 {
@@ -15,7 +12,6 @@ namespace HonccaBuildingGame.Classes.GameObjects
         public Vector2 Momentum;
 
         public bool PhysicsEnabled;
-        public bool Active = true;
 
         public enum Axis
         {

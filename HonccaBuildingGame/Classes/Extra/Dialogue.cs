@@ -1,5 +1,7 @@
-﻿using HonccaBuildingGame.Classes.Main;
+﻿using HonccaBuildingGame.Classes.GameObjects;
+using HonccaBuildingGame.Classes.Main;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -11,24 +13,49 @@ namespace HonccaBuildingGame.Classes.Extra
     class Dialogue
     {
         private readonly string[] Dialogues;
-        private int CurrentDialogue = -1;
+        public int CurrentDialogue = -1;
 
-        private SpriteFont DialogueFont;
+        public static SpriteFont DialogueFont;
+
+        private readonly SoundEffect TypingSoundEffect;
+        private readonly Timer TypingSoundTimer;
 
         private TimeSpan StartedDialogue;
+
+        private readonly Animation InteractAnimation;
+
+        public int DialogueCount
+        {
+            get
+            {
+                return Dialogues.Length;
+            }
+        }
+
 
         /// <summary>
         /// How long each dialogue will take in milliseconds.
         /// </summary>
-        private const int DialogueTime = 4000;
+        private const int DialogueTime = 2000;
 
         public Dialogue(string[] dialogues)
         {
             Dialogues = dialogues;
 
-            DialogueFont = MainGame.Instance.Content.Load<SpriteFont>("Fonts/dialogueFont");
+            DialogueFont = MainGame.Instance.Content.Load<SpriteFont>("Fonts/pixelFont");
+
+            TypingSoundEffect = Globals.MainAudioHandler.GetAudio("DIALOGUE");
+            TypingSoundTimer = new Timer((float)TypingSoundEffect.Duration.TotalMilliseconds, true);
+
+            InteractAnimation = new Animation(Vector2.Zero, Globals.MainGraphicsHandler.GetSprite("DIALOGUE_INTERACT"));
+            InteractAnimation.SetAnimationData(new Point(4, 0), new Point(0, 4), Animation.Flip.RIGHT, 280);
+            InteractAnimation.CurrentState = Animation.State.ANIMATING;
         }
 
+        /// <summary>
+        /// Start the dialogue.
+        /// </summary>
+        /// <param name="gameTime">The current gameTime object.</param>
         public void StartDialogue(GameTime gameTime)
         {
             StartedDialogue = gameTime.TotalGameTime;
@@ -48,6 +75,11 @@ namespace HonccaBuildingGame.Classes.Extra
 			}
         }
 
+        /// <summary>
+        /// Get the current dialogue text.
+        /// </summary>
+        /// <param name="gameTime">The current gameTime object.</param>
+        /// <returns>A string with the dialogue text.</returns>
         public string GetDialogueText(GameTime gameTime)
         {
             if (CurrentDialogue < 0)
@@ -61,10 +93,9 @@ namespace HonccaBuildingGame.Classes.Extra
 
             string dialogueText = "";
 
-            string currentDialogue = Dialogues[CurrentDialogue];
+            double charIndex = GetPercentageOfDialogue(gameTime);
 
-            // Calculate which char index we're at in the dialogue string.
-            double charIndex = Math.Clamp((gameTime.TotalGameTime.TotalMilliseconds - StartedDialogue.TotalMilliseconds) / DialogueTime * currentDialogue.Length, 0, currentDialogue.Length);
+            string currentDialogue = Dialogues[CurrentDialogue];
 
             for (int currentStringIndex = 0; currentStringIndex < charIndex; currentStringIndex++)
             {
@@ -74,6 +105,11 @@ namespace HonccaBuildingGame.Classes.Extra
             return dialogueText;
         }
 
+        /// <summary>
+        /// How many lines there are inside the dialogue text.
+        /// </summary>
+        /// <param name="gameTime">The current gameTime object.</param>
+        /// <returns>A int which determines the lines inside the dialogue.</returns>
         public int GetAmountOfLines(GameTime gameTime)
         {
             string dialogueText = GetDialogueText(gameTime);
@@ -81,6 +117,21 @@ namespace HonccaBuildingGame.Classes.Extra
             int amountOfLines = dialogueText.Count(character => character.Equals('\n'));
 
             return amountOfLines;
+        }
+
+        /// <summary>
+        /// Get how much of the dialogue that is done in %.
+        /// </summary>
+        /// <param name="gameTime">The current gameTime object.</param>
+        /// <returns>A double which is the % fo the dialogue.</returns>
+        private double GetPercentageOfDialogue(GameTime gameTime)
+        {
+            string currentDialogue = Dialogues[CurrentDialogue];
+
+            // Calculate which char index we're at in the dialogue string.
+            double percentage = Math.Clamp((gameTime.TotalGameTime.TotalMilliseconds - StartedDialogue.TotalMilliseconds) / DialogueTime * currentDialogue.Length, 0, currentDialogue.Length);
+
+            return percentage;
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 drawPosition)
@@ -91,24 +142,24 @@ namespace HonccaBuildingGame.Classes.Extra
 
             if (dialogueText.Length > 0)
             {
-                Texture2D topSprite = Globals.MainGraphicsHandler.GetSprite("SPEECH_BUBBLE_TOP");
+                double charIndex = GetPercentageOfDialogue(gameTime);
 
-                spriteBatch.Draw(topSprite, new Rectangle((int)initialPosition.X - Globals.TileSize.X / 3, (int)initialPosition.Y - Globals.TileSize.Y / 4, topSprite.Width / 2, 32), Color.White);
-
-                Texture2D middleSprite = Globals.MainGraphicsHandler.GetSprite("SPEECH_BUBBLE_MIDDLE");
-
-                int amountOfLines = GetAmountOfLines(gameTime);
-
-                for (int currentLine = 0; currentLine < amountOfLines; currentLine++)
+                if (charIndex < dialogueText.Length && TypingSoundTimer.IsFinished(gameTime))
                 {
-                    spriteBatch.Draw(middleSprite, new Rectangle((int)initialPosition.X - Globals.TileSize.X / 3, (int)(initialPosition.Y + Globals.TileSize.Y / 4) + (Globals.TileSize.Y / 4 * currentLine), middleSprite.Width / 2, 32), Color.White);
+                    Globals.MainAudioHandler.PlaySound("DIALOGUE", 0.07f);
+
+                    TypingSoundTimer.ResetTimer(gameTime);
                 }
 
-                Texture2D bottomSprite = Globals.MainGraphicsHandler.GetSprite("SPEECH_BUBBLE_BOTTOM");
+                spriteBatch.DrawString(DialogueFont, dialogueText, new Vector2(Globals.ScreenSize.X - DialogueFont.MeasureString(dialogueText).X + Globals.MainCamera.Position.X, 0), Color.White);
+            }
+            else
+            {
+                InteractAnimation.Update(gameTime);
 
-                spriteBatch.Draw(bottomSprite, new Rectangle((int)initialPosition.X - Globals.TileSize.X / 3, (int)(initialPosition.Y + Globals.TileSize.Y / 4) + (Globals.TileSize.Y / 4 * (amountOfLines > 0 ? (amountOfLines + 1) : 0)), bottomSprite.Width / 2, 48), Color.White);
+                InteractAnimation.Position = initialPosition;
 
-                spriteBatch.DrawString(DialogueFont, dialogueText, initialPosition, Color.Black);
+                InteractAnimation.Draw(gameTime, spriteBatch);
             }
         }
     }

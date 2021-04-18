@@ -1,9 +1,7 @@
 ﻿using HonccaBuildingGame.Classes.GameObjects;
+using HonccaBuildingGame.Classes.Inventories;
 using HonccaBuildingGame.Classes.Main;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HonccaBuildingGame.Classes.Pickups
 {
@@ -11,9 +9,9 @@ namespace HonccaBuildingGame.Classes.Pickups
     {
 		public Block(Vector2 _startPosition, string _blockName) : base(_startPosition, Globals.MainGraphicsHandler.GetSprite(_blockName))
 		{
-			SetAnimationData(Point.Zero, Point.Zero, Direction.LEFT, 120);
+			SetAnimationData(Point.Zero, Point.Zero, Flip.LEFT, 120);
 
-			TileSize.Y = 64;
+			TextureSize.Y = 64;
 
 			CurrentState = State.ANIMATING;
 
@@ -53,6 +51,17 @@ namespace HonccaBuildingGame.Classes.Pickups
 			}
 
 			Position += frameMovement;
+		}
+
+		public override void OnPickup(GameTime gameTime)
+		{
+			base.OnPickup(gameTime);
+
+			Globals.MainPlayer.ItemInventory.AddItem(new Item()
+			{
+				Name = Globals.MainGraphicsHandler.GetSpriteNameFromTexture2D(Texture),
+				Count = 1
+			});
 		}
 	}
 }

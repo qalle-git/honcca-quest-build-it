@@ -1,35 +1,32 @@
 ﻿using HonccaBuildingGame.Classes.Main;
-using HonccaBuildingGame.Classes.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HonccaBuildingGame.Classes.GameObjects
 {
     class Animation : GameObject
     {
-        public float AnimationSpeed;
+        protected float AnimationSpeed;
 
-        public Point TotalFrames;
+        protected Point TotalFrames;
         public Point CurrentFrame;
 
-        public Point FrameRange;
+        protected Point FrameRange;
 
-        public int Multiplier;
+        protected int Multiplier;
 
-        public bool FullAnimation;
+        protected bool FullAnimation;
 
         public State CurrentState = State.IDLE;
-        public Direction CurrentDirection;
+        public Flip TextureDirection;
 
-        public Point TileSize = Globals.TileSize;
+        public Point TextureSize = Globals.TileSize;
 
         /// <summary>
         /// The direction the animation will face, LEFT will flip the object horizontally.
         /// </summary>
-        public enum Direction
+        public enum Flip
         {
             LEFT,
             RIGHT
@@ -54,7 +51,7 @@ namespace HonccaBuildingGame.Classes.GameObjects
         /// <returns>The hitbox in a rectangle object.</returns>
         public override Rectangle GetRectangle()
         {
-            return new Rectangle((int)Position.X, (int)Position.Y, Globals.TileSize.X - 4, TileSize.Y);
+            return new Rectangle((int)Position.X, (int)Position.Y, Globals.TileSize.X - 4, TextureSize.Y);
         }
      
 
@@ -66,14 +63,14 @@ namespace HonccaBuildingGame.Classes.GameObjects
         /// <param name="_direction">The direction the sprite should face | LEFT | RIGHT |</param>
         /// <param name="_animationSpeed">Animation speed.</param>
         /// <param name="_multiplier">Scale multiplier.</param>
-        public void SetAnimationData(Point _totalFrames, Point _frameRange, Direction _direction, float _animationSpeed = 120f, int _multiplier = 1, bool _fullAnimation = false)
+        public void SetAnimationData(Point _totalFrames, Point _frameRange, Flip _direction, float _animationSpeed = 120f, int _multiplier = 1, bool _fullAnimation = false)
         {
             TotalFrames = _totalFrames;
             FrameRange = _frameRange;
 
             CurrentFrame.X = FrameRange.X;
 
-            CurrentDirection = _direction;
+            TextureDirection = _direction;
 
             AnimationSpeed = _animationSpeed;
 
@@ -88,9 +85,6 @@ namespace HonccaBuildingGame.Classes.GameObjects
 
         public override void Update(GameTime gameTime)
         {
-            if (!Active)
-                return;
-
             if (CurrentState == State.ANIMATING)
 			{
                 if (gameTime.TotalGameTime > LastAnimation + AnimationCooldown)
@@ -129,15 +123,12 @@ namespace HonccaBuildingGame.Classes.GameObjects
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (!Active)
-                return;
-
-            int tileSizeY = TileSize.Y;
+            int tileSizeY = TextureSize.Y;
 
             Rectangle drawRectangle = new Rectangle((int)Position.X, (int)Position.Y, Globals.TileSize.X * Multiplier, tileSizeY * Multiplier);
             Rectangle sourceRectangle = new Rectangle(CurrentFrame.X * Globals.TileSize.X, CurrentFrame.Y * tileSizeY, Globals.TileSize.X, tileSizeY);
 
-            spriteBatch.Draw(Texture, drawRectangle, sourceRectangle, Color.White, 0f, Vector2.Zero, CurrentDirection == Direction.LEFT ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
+            spriteBatch.Draw(Texture, drawRectangle, sourceRectangle, Color.White, 0f, Vector2.Zero, TextureDirection == Flip.LEFT ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
         }
     }
 }

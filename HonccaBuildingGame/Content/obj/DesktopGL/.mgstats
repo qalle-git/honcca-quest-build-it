@@ -1,2 +1,4 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Tiles/mainSet.png","F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/bin/DesktopGL/Tiles/mainSet.xnb","TextureProcessor","Texture2DContent",34273,3063893,0,1710482
+"F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/eButton.png","F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/bin/DesktopGL/Sprites/eButton.xnb","TextureProcessor","Texture2DContent",923,16469,0,4338407
+"F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/fButton.png","F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/bin/DesktopGL/Sprites/fButton.xnb","TextureProcessor","Texture2DContent",920,16469,0,0079794
+"F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/Sprites/rButton.png","F:/Github/honcca-quest-build-it/HonccaBuildingGame/Content/bin/DesktopGL/Sprites/rButton.xnb","TextureProcessor","Texture2DContent",952,16469,0,008977

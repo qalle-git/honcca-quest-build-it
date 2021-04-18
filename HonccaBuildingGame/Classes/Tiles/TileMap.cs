@@ -1,13 +1,10 @@
 ﻿using HonccaBuildingGame.Classes.Main;
-using Microsoft.VisualBasic;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using HonccaBuildingGame.Classes.Extra;
 using HonccaBuildingGame.Classes.Pickups;
-using HonccaBuildingGame.Classes.GameObjects;
 
 namespace HonccaBuildingGame.Classes.Tiles
 {
@@ -15,6 +12,9 @@ namespace HonccaBuildingGame.Classes.Tiles
     {
         public Tile[,][] Map;
 
+        /// <summary>
+        /// Get the tile map dimensions.
+        /// </summary>
         public Point SheetDimensions
         {
             get
@@ -32,6 +32,11 @@ namespace HonccaBuildingGame.Classes.Tiles
             SpawnPickups();
         }
 
+        /// <summary>
+        /// Get a list of the closest tiles.
+        /// </summary>
+        /// <param name="placePosition">The position you want to check from.</param>
+        /// <returns>A array with all the closest tiles.</returns>
         public Tile[] GetClosestTile(Vector2 placePosition)
         {
             Point lastTilePosition = new Point(-1, -1);
@@ -65,6 +70,12 @@ namespace HonccaBuildingGame.Classes.Tiles
             };
         }
 
+        /// <summary>
+        /// This determines whether the gameObject can move to the sides or not.
+        /// </summary>
+        /// <param name="hitbox">The hitbox of the gameObject.</param>
+        /// <param name="frameMovement">How far the gameObject will move in this frame.</param>
+        /// <returns>Whether the gameObject can move or not.</returns>
         public bool CanMove(Rectangle hitbox, ref Vector2 frameMovement)
         {
             int currentX = (int)Math.Floor((hitbox.X + frameMovement.X) / Globals.TileSize.X);
@@ -97,6 +108,12 @@ namespace HonccaBuildingGame.Classes.Tiles
             return true;
         }
 
+        /// <summary>
+        /// This determines whether the gameObject can fall or not.
+        /// </summary>
+        /// <param name="hitbox">The hitbox of the gameObject.</param>
+        /// <param name="frameMovement">How far the gameObject will move in this frame.</param>
+        /// <returns>Whether the gameObject can fall or not.</returns>
         public bool CanFall(Rectangle hitbox, ref Vector2 frameMovement)
         {
             int minimumX = (int)Math.Floor((hitbox.X + frameMovement.X) / Globals.TileSize.X);
@@ -117,6 +134,12 @@ namespace HonccaBuildingGame.Classes.Tiles
             return true;
         }
 
+        /// <summary>
+        /// This determines whether the gameObject can jump or not.
+        /// </summary>
+        /// <param name="hitbox">The hitbox of the gameObject.</param>
+        /// <param name="frameMovement">How far the gameObject will move in this frame.</param>
+        /// <returns>Whether the gameObject can jump or not.</returns>
         public bool CanJump(Rectangle hitbox, ref Vector2 frameMovement)
         {
             int minimumX = (int)Math.Floor((hitbox.X + frameMovement.X) / Globals.TileSize.X);
@@ -137,6 +160,12 @@ namespace HonccaBuildingGame.Classes.Tiles
             return true;
         }
 
+        /// <summary>
+        /// Get the collision type at a certain position.
+        /// </summary>
+        /// <param name="currentX">The X position to check</param>
+        /// <param name="currentY">The Y position to check</param>
+        /// <returns>A Tile.Type that says if there is a certain collision here.</returns>
         private Tile.Type GetCollisionAtPosition(int currentX, int currentY)
         {
             int maxX = Map.GetLength(0);
@@ -162,6 +191,10 @@ namespace HonccaBuildingGame.Classes.Tiles
             return Tile.Type.NONE;
         }
 
+        /// <summary>
+        /// This will load a certain map to use as the tilemap.
+        /// </summary>
+        /// <param name="fileName">The name of the file you want to load.</param>
         public void LoadMapFromFile(string fileName)
         {
             Map = new Tile[Globals.GameSize.X, Globals.GameSize.Y][];
@@ -205,6 +238,9 @@ namespace HonccaBuildingGame.Classes.Tiles
             }
         }
 
+        /// <summary>
+        /// This will spawn each pickup located inside the tilemap.
+        /// </summary>
         private void SpawnPickups()
 		{
             for (int currentX = 0; currentX < Map.GetLength(0); currentX++)
@@ -227,11 +263,7 @@ namespace HonccaBuildingGame.Classes.Tiles
                         }
                         else if (currentTile.TileIndex == 56)
                         {
-                            Furniture staticBox = new Furniture(new Vector2(currentX * Globals.TileSize.X, currentY * Globals.TileSize.Y), Globals.MainGraphicsHandler.GetSprite("StaticBox"));
-
-                            staticBox.SetAnimationData(new Point(2, 0), new Point(0, 2), Animation.Direction.LEFT, 450);
-
-                            Globals.AllGameObjects.Add(staticBox);
+                            Globals.AllGameObjects.Add(new End(new Vector2(currentX * Globals.TileSize.X, currentY * Globals.TileSize.Y)));
                         }
 					}
                 }

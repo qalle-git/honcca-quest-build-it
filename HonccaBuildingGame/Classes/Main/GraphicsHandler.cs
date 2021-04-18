@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace HonccaBuildingGame.Classes.Main
 {
@@ -81,29 +80,12 @@ namespace HonccaBuildingGame.Classes.Main
                     FileName = "Sprites/groundItem"
                 }
             },
-
             {
-                "SPEECH_BUBBLE_TOP",
+                "DIALOGUE_INTERACT",
 
                 new Sprite()
                 {
-                    FileName = "Sprites/speechBubbleTop"
-                }
-            },
-            {
-                "SPEECH_BUBBLE_MIDDLE",
-
-                new Sprite()
-                {
-                    FileName = "Sprites/speechBubbleMiddle"
-                }
-            },
-            {
-                "SPEECH_BUBBLE_BOTTOM",
-
-                new Sprite()
-                {
-                    FileName = "Sprites/speechBubbleBottom"
+                    FileName = "Sprites/interactNPC"
                 }
             },
             {
@@ -121,6 +103,30 @@ namespace HonccaBuildingGame.Classes.Main
                 {
                     FileName = "SpriteSheets/doorAnimation"
                 }
+            },
+            {
+                "BUTTON_E",
+
+                new Sprite()
+                {
+                    FileName = "Sprites/eButton"
+                }
+            },
+            {
+                "BUTTON_F",
+
+                new Sprite()
+                {
+                    FileName = "Sprites/fButton"
+                }
+            },
+            {
+                "BUTTON_R",
+
+                new Sprite()
+                {
+                    FileName = "Sprites/rButton"
+                }
             }
         };
 
@@ -132,6 +138,11 @@ namespace HonccaBuildingGame.Classes.Main
                 Graphics[graphic.Key].LoadTexture();
         }
 
+        /// <summary>
+        /// Get the Texture2D object.
+        /// </summary>
+        /// <param name="spriteName">The spriteName</param>
+        /// <returns>A texture2d object.</returns>
         public Texture2D GetSprite(string spriteName)
         {
             if (Graphics.ContainsKey(spriteName))
@@ -145,6 +156,11 @@ namespace HonccaBuildingGame.Classes.Main
             throw new Exception($"{spriteName} doesn't exist in the dictionary.");
         }
 
+        /// <summary>
+        /// Get the spriteName from a Texture2D object.
+        /// </summary>
+        /// <param name="texture">The Texture2D object.</param>
+        /// <returns></returns>
         public string GetSpriteNameFromTexture2D(Texture2D texture)
         {
             foreach (var currentSprite in Graphics)

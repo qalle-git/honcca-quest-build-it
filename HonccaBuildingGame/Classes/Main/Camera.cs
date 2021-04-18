@@ -1,8 +1,4 @@
-﻿using HonccaBuildingGame.Classes.GameObjects;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Xna.Framework;
 
 namespace HonccaBuildingGame.Classes.Main
 {
@@ -13,21 +9,34 @@ namespace HonccaBuildingGame.Classes.Main
 
 		public float Scale = 1f;
 
+		/// <summary>
+		/// Move the camera (animation)
+		/// </summary>
+		/// <param name="newPosition">The end position the camera should end on.</param>
 		public void Move(Vector2 newPosition)
 		{
 			NewPosition = newPosition;
 		}
 
+		public void ForceMove(Vector2 newPosition)
+		{
+			Position = newPosition;
+			NewPosition = newPosition;
+		}
+
+		/// <summary>
+		/// Zoom the camera.
+		/// </summary>
+		/// <param name="zoomScale">The amount you want to zoom.</param>
 		public void Zoom(float zoomScale)
 		{
 			Scale *= zoomScale;
 		}
 
-		public void Focus(GameObject gameObject)
-		{
-			Position = new Vector2(gameObject.Position.X - (Globals.ScreenSize.X / 2), gameObject.Position.Y - (Globals.ScreenSize.Y / 2));
-		}
-
+		/// <summary>
+		/// Updates to the correct position using lerp as the animation.
+		/// </summary>
+		/// <param name="gameTime">The current gameTime object.</param>
 		public void Update(GameTime gameTime)
 		{
 			Position.X = MathHelper.Lerp(Position.X, NewPosition.X, 0.05f);
